@@ -83,7 +83,6 @@ public class StatementRetreiver
 		RemoteLRS lrs = SetLRS(); 
 
 		// make query 
-		// TODO: make myself a ctor
 		StatementsQuery agentObjectQuery = new StatementsQuery();
 
 		// this must be set to true to get only statements where target is in the object
@@ -110,21 +109,4 @@ public class StatementRetreiver
 
 
 	}
-
-	public void PostTestStatements(int numberToPost, Statement st) throws Exception
-	{
-		// set endpoint
-		RemoteLRS lrs = SetLRS(); 
-		for (int i = 0; i < numberToPost; i++) {
-			Statement temp = new Statement();
-			// copy statement into new statement so a new statements gets inserted
-			temp.setActor(st.getActor());
-			temp.setObject(st.getObject());
-			temp.setVerb(st.getVerb());
-			temp.setResult(st.getResult());
-			temp.setContext(st.getContext());
-			System.out.println(lrs.saveStatement(temp));
-		}
-	}
-
 }

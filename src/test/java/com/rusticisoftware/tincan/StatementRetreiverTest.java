@@ -55,52 +55,6 @@ public class StatementRetreiverTest {
 		.Username(username)
 		.Password(password);
 
-		// set to true to populate the LRS with test data
-		boolean popTestData = true;
-		int howMany = 1; 
-		if (popTestData)
-		{	
-			//		// verb
-			Verb verb = new Verb();
-			LanguageMap display = new LanguageMap();
-			display.put("en", "assessed");
-			verb.setDisplay(display);
-			verb.setId("http://www.example.com/VerbId");
-			//
-			// object 
-			AgentActivity target = new AgentActivity();
-			target.setObjectType("Agent");
-			target.setMbox(angelBob.getMbox());
-			target.setName(angelBob.getName());
-			//
-			Statement st = new Statement();
-			st.stamp(); // triggers a PUT -- sure?
-
-			st.setActor(doctor);
-			st.setVerb(verb);
-			st.setObject(target);
-
-			getBob.PostTestStatements(howMany, st);
-
-			// object 
-			AgentActivity otherTarget = new AgentActivity();
-			otherTarget.setObjectType("Agent");
-			otherTarget.setMbox(doctor.getMbox());
-			otherTarget.setName(doctor.getName());
-
-			Statement OtherStatement = new Statement();
-			OtherStatement.setActor(angelBob);
-			OtherStatement.setVerb(verb);
-			OtherStatement.setObject(otherTarget);
-			OtherStatement.stamp();
-
-			System.out.print(OtherStatement.getObject());
-
-			getDoctors.PostTestStatements(howMany, OtherStatement);
-
-
-		}
-
 		// Gets the statements
 		ArrayList<Statement> onlyBobs = getBob.GetStatements();
 		Assert.assertTrue(onlyBobs.size() > 1);
